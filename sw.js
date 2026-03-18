@@ -8,7 +8,7 @@ const FILES_TO_CACHE = [
     '/cms-students/manifest.json',
     '/cms-students/sw.js',
     '/cms-students/source/icon-192.png',
-    // icon-512.png — додай файл або видали рядок
+    icon-512.png — додай файл або видали рядок
     '/cms-students/source/add.svg',
     '/cms-students/source/edit.svg',
     '/cms-students/source/closs.svg',
