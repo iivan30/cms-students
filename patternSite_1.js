@@ -555,7 +555,7 @@ if (confirmDelBtn) {
 // ---- Реєстрація Service Worker ----
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register('/cms-students/sw.js', { scope: '/cms-students/' })
             .then(reg => console.log('[SW] Registered, scope:', reg.scope))
             .catch(err => console.error('[SW] Registration failed:', err));
     });
