@@ -2,22 +2,22 @@ const CACHE_NAME = 'cms-cache-v1';
 
 // Файли які кешуємо при встановленні
 const FILES_TO_CACHE = [
-    '/patternSite_1.html',
-    '/patternSite_1.css',
-    '/patternSite_1.js',
-    '/manifest.json',
-    '/source/icon-192.png',
-    '/source/icon-512.png',
-    '/source/add.svg',
-    '/source/edit.svg',
-    '/source/closs.svg',
-    '/source/wbell.svg',
-    '/source/profilee.svg',
-    '/source/chevron-left.svg',
-    '/source/chevron-right.svg',
-    '/source/smile-no-mouth.svg'
+    '/cms-students/index.html',
+    '/cms-students/patternSite_1.css',
+    '/cms-students/patternSite_1.js',
+    '/cms-students/manifest.json',
+    '/cms-students/sw.js',
+    '/cms-students/source/icon-192.png',
+    '/cms-students/source/icon-512.png',
+    '/cms-students/source/add.svg',
+    '/cms-students/source/edit.svg',
+    '/cms-students/source/closs.svg',
+    '/cms-students/source/wbell.svg',
+    '/cms-students/source/profilee.svg',
+    '/cms-students/source/chevron-left.svg',
+    '/cms-students/source/chevron-right.svg',
+    '/cms-students/source/smile-no-mouth.svg'
 ];
-
 // ---- INSTALL ----
 // Спрацьовує один раз при першому завантаженні SW
 self.addEventListener('install', event => {
