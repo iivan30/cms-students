@@ -2,13 +2,13 @@ const CACHE_NAME = 'cms-cache-v1';
 
 // Файли які кешуємо при встановленні
 const FILES_TO_CACHE = [
-    '/cms-students/index.html',
+    '/cms-students/patternSite_1.html',  // ← виправлено
     '/cms-students/patternSite_1.css',
     '/cms-students/patternSite_1.js',
     '/cms-students/manifest.json',
     '/cms-students/sw.js',
     '/cms-students/source/icon-192.png',
-    '/cms-students/source/icon-512.png',
+    // icon-512.png — додай файл або видали рядок
     '/cms-students/source/add.svg',
     '/cms-students/source/edit.svg',
     '/cms-students/source/closs.svg',
