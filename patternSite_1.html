@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="author" content="Ivan Kohan">
+    <meta name="description" content="Lab_1">  
+    <link rel="icon" href="source/smile-no-mouth.svg" type="image/svg">
+    <link rel="stylesheet" href="patternSite_1.css" type="text/css">
+    <!-- <meta http-equiv="refresh" content="5; url=https://google.com"> -->
+    <!-- <meta property="og:title" content="Student Management CMS">
+    <meta property="og:description" content="Створення шаблону сайту для CMS.">
+    <meta property="og:image" content="https://vash-sayt.com/source/cms-screenshot.png"> -->
+
+
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#656572">
+    <title>CMS</title>
+</head>
+<body>
+    <header class="banner">
+        <h2><a class="cms" href="#" title="CMS"> CMS </a></h2>
+        <div class="header-right">
+            <div class="notification-wrapper">
+                <a href="message.html" class="notification-link" title="Notifications">
+                  <div class="bell-wrapper">   
+                <img src="source/wbell.svg" alt="Bell Icon" title="Notifications" class="notification-icon">
+                <span class="notif-dot"></span>
+            </div>
+            </a>
+             
+                <div class="dropdown">
+                    <!-- <h4>Notifications</h4> -->
+                    <div class="notif-item">   
+                      <div class="notif-left">
+                        <img src="source/icon1.png" alt="Profile Icon" title="Avatar" class="avatar-icon">
+                        <p class="notif-name">User1</p>
+                        </div> 
+                        <div class="message-bubble">
+                            <p class="notif-desc">TODO task</p>
+                        </div>
+                    </div>
+                    <div class="notif-item">   
+                        <div class="notif-left">
+                        <img src="source/icon2.png" alt="Profile Icon" title="Avatar" class="avatar-icon">
+                            <p class="notif-name">User2</p>
+                            </div>
+                            <div class="message-bubble">
+                            <p class="notif-desc">TODO task</p>
+                        </div>
+                        </div>
+                    <div class="notif-item">  
+                        <div class="notif-left">
+                        <img src="source/icon3.png" alt="Profile Icon" title="Avatar" class="avatar-icon"> 
+                            <p class="notif-name">User3</p>
+                           </div>
+                            <div class="message-bubble">
+                            <p class="notif-desc">TODO task</p>
+                        </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="profile-wrapper">
+                <img src="source/profilee.svg" alt="Profile Icon" title="Profile">
+                <span class="username">James Bond</span>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Profile</button>
+                    <button class="dropdown-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="sub-banner">
+        <!-- <nav> -->
+            <ul>
+                <li><a href="dashboard.html" target="_self">Dashboard</a></li>
+                <li><a href="patternSite_1.html" target="_self">Students</a></li>
+                <li><a href="task.html" target="_self">Task</a></li>
+            </ul>
+        <!-- </nav>  -->
+    </div>
+
+    <main class="main-content">
+        <div class="content-header">
+            <h1>Students</h1>
+            <button class="add" title="Add Student" aria-label="Add Student"></button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all" aria-label="selectAllStudents"></th>
+                    <th>Group</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Birthday</th>
+                    <th>Status</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <tr data-student-id="STU-STATIC-001">
+                    <td><input type="checkbox" class="student-checkbox" aria-label="selectThisStudent"></td>
+                    <td>KN-21</td>
+                    <td>John Smith</td>
+                    <td>M</td>
+                    <td>11.05.2004</td>
+                    <td><div class="status-indicator active"></div></td>
+                    <td>
+                        <button class="edit" title="Edit"></button>
+                        <button class="delete" title="Delete"></button>
+                    </td>
+                </tr>
+                  <tr data-student-id="STU-STATIC-002">
+                    <td><input type="checkbox" class="student-checkbox" aria-label="selectThisStudent"></td>
+                    <td>KN-21</td>
+                    <td>Ann Bond</td>
+                    <td>F</td>
+                    <td>24.04.2004</td>
+                    <td><div class="status-indicator inactive"></div></td>
+                    <td>
+                        <button class="edit" title="Edit"></button>
+                        <button class="delete" title="Delete"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+    <button class="prev" title="Previous">0</button>
+    <button class="page-btn static">1</button>
+    <button class="page-btn static">2</button>
+    <button class="page-btn static">3</button>
+    <button class="page-btn static">4</button>
+    <button class="page-btn static">5</button>
+    <button class="next" title="Next">0</button>
+</div>
+        <div id="delete-popup" class="modal-overlay">
+            <div class="modal-content warning-modal">
+                <div class="modal-header">
+                    <h2>Warning</h2>
+                    <button type="button" class="close-btn" id="close-delete-btn">&times;</button>  <!--times;-->
+                </div>
+                <div class="modal-body">
+                    <p class="deleteMessage">Are you sure you want to delete this user?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancel-delete-btn" class="modal-btn">Cancel</button>
+                    <button type="button" id="confirm-delete-btn" class="modal-btn danger">Ok</button>
+                </div>
+            </div>
+        </div>
+        <form id="add-student-form" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add student</h2>
+                    <button type="button" class="close-btn" id="close-add-student-btn">&times;</button> <!--&times;-->
+                </div>
+                <div class="modal-body form-grid">
+                  <input type="hidden" id="student-id" name="id" value="">
+    <label for="group">Group</label>
+    <div class="group-wrapper">
+    <select name="group" id="group" >
+        <option value="" disabled selected hidden>Select group</option>
+        <optgroup label="KN-1*">
+            <option value="KN-11">KN-11</option>
+            <option value="KN-12">KN-12</option>
+            <option value="KN-13">KN-13</option>
+            <option value="KN-14">KN-14</option>
+            <option value="KN-15">KN-15</option>
+        </optgroup>
+        <optgroup label="KN-2*">
+            <option value="KN-21">KN-21</option>
+            <option value="KN-22">KN-22</option>
+            <option value="KN-23">KN-23</option>
+            <option value="KN-24">KN-24</option>
+            <option value="KN-25">KN-25</option>
+        </optgroup>
+        <optgroup label="KN-3*">
+            <option value="KN-31">KN-31</option>
+            <option value="KN-32">KN-32</option>
+            <option value="KN-33">KN-33</option>
+            <option value="KN-34">KN-34</option>
+            <option value="KN-35">KN-35</option>
+        </optgroup>
+        <optgroup label="KN-4*">
+            <option value="KN-41">KN-41</option>
+            <option value="KN-42">KN-42</option>
+            <option value="KN-43">KN-43</option>
+            <option value="KN-44">KN-44</option>
+            <option value="KN-45">KN-45</option>
+        </optgroup>
+         <optgroup label="OTHER*">
+        <option value="custom">Other...</option>
+        </optgroup>
+    </select>
+     <input type="text" id="custom-group" placeholder="Enter group" style="display:none">
+</div>
+    <span class="error-msg" id="group-error"></span>
+
+    <label for="firstname">First name</label>
+    <input type="text" name="firstname" id="firstname" autocomplete="on"> <!--maxlength="20"-->
+    <span class="error-msg" id="firstname-error"></span>
+
+    <label for="lastname">Last name</label>
+    <input type="text" name="lastname" id="lastname" autocomplete="on" > <!--maxlength="20"-->
+    <span class="error-msg" id="lastname-error"></span>
+
+    <label for="gender">Gender</label>
+    <select name="gender" id="gender" >
+        <option value="" disabled selected hidden>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <span class="error-msg" id="gender-error"></span>
+
+    <label for="birthday">Birthday</label>
+    <input type="date" name="birthday" id="birthday">
+    <span class="error-msg" id="birthday-error"></span>
+</div> 
+                <div class="modal-footer">
+                    <button type="button" class="modal-btn cancel">Cancel</button>
+                    <button type="submit" class="modal-btn create">Add</button>
+                </div>
+            </div>
+        </form>
+
+    </main>
+
+    <script src="patternSite_1.js" defer></script>
+
+</body>
+</html>
