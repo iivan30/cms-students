@@ -22,7 +22,6 @@ let currentPage = 1;
 
 
 
-
 function formatDateForTable(dateStr) {
     let parts = dateStr.split('-');
     return parts[2] + '.' + parts[1] + '.' + parts[0];
@@ -49,7 +48,7 @@ function clearError(id) {
 
 function formatName(value) {
     value = value.replace(/[^a-zA-Zа-яА-ЯіІїЇєЄ '-]/g, '');
-    value = value.replace(/^[-'\s]+/, ''); // прибирає - і пробіли на початку
+    value = value.replace(/^[-'\s]+/, ''); 
     value = value.replace(/ +/g, '-');
      value = value.replace(/'-/g, '-');
       value = value.replace(/-'/g, '-');
@@ -62,7 +61,7 @@ function formatName(value) {
 
 function formatGroupName(value) {
     value = value.replace(/[^a-zA-Zа-яА-ЯіІїЇєЄ0-9 -]/g, '');
-    value = value.replace(/^[-\s]+/, ''); // прибирає - і пробіли на початку
+    value = value.replace(/^[-\s]+/, ''); 
     value = value.replace(/ +/g, '-');
     value = value.replace(/^[-0-9]+/, '');
     value = value.replace(/-{2,}/g, '-');
@@ -72,7 +71,7 @@ function formatGroupName(value) {
 
     let numbers = '';
     if (parts[1] !== undefined) {
-        numbers = parts[1].replace(/[^0-9]/g, '').slice(0, 3); // ← максимум 3 цифри
+        numbers = parts[1].replace(/[^0-9]/g, '').slice(0, 3);
     }
 
     if (numbers !== '') return letters + '-' + numbers;
@@ -84,18 +83,17 @@ function formatGroupName(value) {
 function getVisibleCheckboxes() {
       if (!tbody) 
         return [];
-    let visible = []; // Створюємо порожній список
-    let allCheckboxes = tbody.querySelectorAll('.student-checkbox'); // Знаходимо абсолютно всі чекбокси
+    let visible = []; 
+    let allCheckboxes = tbody.querySelectorAll('.student-checkbox'); 
     
-    // Перебираємо всі чекбокси
     allCheckboxes.forEach(cb => {
-        let row = cb.closest('tr'); // Знаходимо рядок, у якому лежить цей чекбокс
-        if (row.style.display !== 'none') { // Якщо рядок НЕ схований...
-            visible.push(cb); // ...додаємо чекбокс у наш список
+        let row = cb.closest('tr'); 
+        if (row.style.display !== 'none') { 
+            visible.push(cb); 
         }
     });
     
-    return visible; // Віддаємо готовий список
+    return visible; 
 }
 
 function renderPage(page) {
@@ -107,7 +105,6 @@ function renderPage(page) {
     if (page > total) page = total;
     currentPage = page;
 
-  // рахуємо один раз
     const start = (currentPage - 1) * ROWS_PER_PAGE;
     const end = start + ROWS_PER_PAGE;
 
@@ -130,10 +127,10 @@ function updatePagination(total) {
     const prevBtn = pagination.querySelector('.prev');
     const nextBtn = pagination.querySelector('.next');
 
-    // видаляємо динамічні кнопки
+
     pagination.querySelectorAll('.page-btn.extra').forEach(b => b.remove());
 
-   // додаємо нові якщо треба більше 5
+ 
 const staticBtns = [...pagination.querySelectorAll('.page-btn.static')];
 for (let i = staticBtns.length + 1; i <= total; i++) {
     const btn = document.createElement('button');
@@ -142,7 +139,7 @@ for (let i = staticBtns.length + 1; i <= total; i++) {
     pagination.insertBefore(btn, nextBtn);
 }
 
-    // оновлюємо всі кнопки
+ 
     [...pagination.querySelectorAll('.page-btn')].forEach((btn, i) => {
         btn.textContent = i + 1;
         btn.classList.toggle('active-page', i + 1 === currentPage);
@@ -151,7 +148,7 @@ for (let i = staticBtns.length + 1; i <= total; i++) {
         btn.onclick = () => renderPage(i + 1);
     });
 
-    // prev/next
+ 
     prevBtn.classList.toggle('disabled', currentPage === 1);
     prevBtn.disabled = currentPage === 1;
     nextBtn.classList.toggle('disabled', currentPage === total);
@@ -159,10 +156,8 @@ for (let i = staticBtns.length + 1; i <= total; i++) {
 }
 
 
-
-
 function generateStudentId() {
-    return 'STU-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+    return 'STU-' + Date.now();
 }
  
 // 2. Функція збереження студента в localStorage
@@ -170,26 +165,20 @@ function saveStudentToStorage(student) {
     const students = JSON.parse(localStorage.getItem('students') || '[]');
     const existingIndex = students.findIndex(s => s.id === student.id);
     if (existingIndex !== -1) {
-        students[existingIndex] = student; // оновлення існуючого
+        students[existingIndex] = student; 
     } else {
-        students.push(student);            // додавання нового
+        students.push(student);           
     }
     localStorage.setItem('students', JSON.stringify(students));
 }
  
-// 3. Функція видалення студента з localStorage
+
 function deleteStudentFromStorage(studentId) {
     const students = JSON.parse(localStorage.getItem('students') || '[]');
     const updated = students.filter(s => s.id !== studentId);
     localStorage.setItem('students', JSON.stringify(updated));
 }
  
-
-
-
-
-
-
 
 
 
@@ -207,17 +196,11 @@ if (tbody) {
 
 
 
-
-
-// ---- Блок таблиці ----
 if (tbody && selectAllCheckbox) {
 
-
-
 selectAllCheckbox.addEventListener('change', function(e) {
-    let visibleCheckboxes = getVisibleCheckboxes(); // Отримуємо список видимих
+    let visibleCheckboxes = getVisibleCheckboxes(); 
     
-    // Проходимось по кожному і ставимо таку ж галочку, як у головного
     visibleCheckboxes.forEach(cb => {
         cb.checked = e.target.checked;
     });
@@ -226,7 +209,7 @@ selectAllCheckbox.addEventListener('change', function(e) {
 
 tbody.addEventListener('change', function(e) {
     if (e.target.classList.contains('student-checkbox')) {
-        let visibleCheckboxes = getVisibleCheckboxes(); // Отримуємо список видимих
+        let visibleCheckboxes = getVisibleCheckboxes(); 
         
         let checkedCount = 0;
         visibleCheckboxes.forEach(cb => {
@@ -236,9 +219,9 @@ tbody.addEventListener('change', function(e) {
         });
 
         if (checkedCount === visibleCheckboxes.length) {
-            selectAllCheckbox.checked = true;  // ...ставимо головну галочку
+            selectAllCheckbox.checked = true;  
         } else {
-            selectAllCheckbox.checked = false; // ...інакше - знімаємо
+            selectAllCheckbox.checked = false; 
         }
     }
 });
@@ -273,7 +256,7 @@ tbody.addEventListener('change', function(e) {
     });
 }
 
-// ---- Блок форми додавання ----
+
 if (addModal) {
     const modalTitle = addModal.querySelector('.modal-header h2');
     const submitBtn = addModal.querySelector('button[type="submit"]');
@@ -290,12 +273,11 @@ if (addModal) {
      const groupRegex = /^[a-zA-Zа-яА-ЯіІїЇєЄ]+-\d{1,3}$/;
 
 
-// завантажуємо збережені групи
     function loadCustomGroups() {
         const select = document.getElementById('group');
         if (!select) 
             return;
-        const saved = JSON.parse(localStorage.getItem('customGroups') || '[]');
+        const saved = JSON.parse(localStorage.getItem('customGroups') || '[]'); 
         saved.forEach(name => addGroupOption(name));
     }
 
@@ -321,7 +303,7 @@ if (addModal) {
 
     loadCustomGroups();
 
-    // показуємо/ховаємо поле custom-group
+
     document.getElementById('group').addEventListener('change', function() {
         const customInput = document.getElementById('custom-group');
         if (this.value === 'custom') {
@@ -368,7 +350,6 @@ if (addModal) {
         editingRow = null;
         modalTitle.textContent = 'Add student';
         submitBtn.textContent = 'Add';
-         // додайте це
     const customInput = document.getElementById('custom-group');
     if (customInput) {
         customInput.style.display = 'none';
@@ -390,7 +371,6 @@ if (addModal) {
     addModal.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // const group = document.getElementById('group').value;
         const groupSelect = document.getElementById('group').value;
         const customGroup = document.getElementById('custom-group').value.trim().toUpperCase();
         const group = groupSelect === 'custom' ? customGroup : groupSelect;
@@ -410,7 +390,7 @@ if (addModal) {
             showError('group', 'Enter group name');
             hasError = true;
         } else if (groupSelect === 'custom' && !groupRegex.test(customGroup)) {
-            showError('group', 'Only letters, numbers, hyphen (2-10 chars)');
+            showError('group', 'Only letters, numbers, (2-10 chars)');
             hasError = true;
         }
 
@@ -447,7 +427,7 @@ if (addModal) {
         if (hasError)
              return;
 
-          // зберігаємо нову групу
+
         if (groupSelect === 'custom') {
             saveCustomGroup(customGroup);
             addGroupOption(customGroup);
@@ -465,24 +445,24 @@ if (addModal) {
             editingRow.querySelector('td:nth-child(3)').textContent = firstName + ' ' + lastName;
             editingRow.querySelector('td:nth-child(4)').textContent = shortGender;
             editingRow.querySelector('td:nth-child(5)').textContent = formattedDate;
-            // Формуємо payload для сервера
+           
         const studentPayload = {
             id:        existingId,
             group:     group,
             firstName: firstName,
             lastName:  lastName,
-            gender:    gender,          // 'Male' / 'Female'
-            birthday:  birthday,        // 'YYYY-MM-DD' (ISO — зручно для сервера)
+            gender:    gender,          
+            birthday:  birthday,       
             status:    'active'
         };
  
         saveStudentToStorage(studentPayload);
-        console.log('✏️ Студента оновлено (payload для сервера):', JSON.stringify(studentPayload, null, 2));
-             renderPage(currentPage); // ← додайте це
+        console.log('Студента оновлено :', JSON.stringify(studentPayload, null, 2));
+             renderPage(currentPage); 
         } else {
             const newId = generateStudentId();
             const newRow = document.createElement('tr');
-            newRow.dataset.studentId = newId;   // ← ЦЕЙ РЯДОК БУВ ВІДСУТНІЙ
+            newRow.dataset.studentId = newId;   
            
            
             newRow.innerHTML = `
@@ -502,15 +482,15 @@ if (addModal) {
             group:     group,
             firstName: firstName,
             lastName:  lastName,
-            gender:    gender,          // 'Male' / 'Female'
-            birthday:  birthday,        // 'YYYY-MM-DD' (ISO)
+            gender:    gender,          
+            birthday:  birthday,        
             status:    'active'
         };
  
         saveStudentToStorage(studentPayload);
-        console.log('✅ Студента додано (payload для сервера):', JSON.stringify(studentPayload, null, 2));
+        console.log('Студента додано :', JSON.stringify(studentPayload, null, 2));
             const newTotal = Math.ceil(tbody.children.length / ROWS_PER_PAGE);
-            renderPage(newTotal); // go to last page
+            renderPage(newTotal); 
             // renderPage(currentPage);
         }
 
@@ -518,7 +498,7 @@ if (addModal) {
     });
 }
 
-// ---- Блок видалення ----
+
 if (confirmDelBtn) {
     function closeDeleteModal() {
         if (deleteModal) 
@@ -536,7 +516,7 @@ if (confirmDelBtn) {
             const id = r.dataset.studentId;
             if (id) {
                 deleteStudentFromStorage(id);
-                console.log('🗑️ Студента видалено з localStorage, id:', id);
+                console.log(' Студента видалено id:', id);
             }
             r.remove();
         });
@@ -551,11 +531,9 @@ if (confirmDelBtn) {
 
 
 
-
-// ---- Реєстрація Service Worker ----
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/cms-students/sw.js', { scope: '/cms-students/' })
+        navigator.serviceWorker.register('/sw.js')
             .then(reg => console.log('[SW] Registered, scope:', reg.scope))
             .catch(err => console.error('[SW] Registration failed:', err));
     });

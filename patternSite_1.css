@@ -181,22 +181,6 @@ body {
     border-color: transparent #e4e6eb transparent transparent;
 }
 
-/* .message-bubble:hover::before {
-    border-color: transparent rgb(182, 182, 182) transparent transparent;
-} */
-
-
-/* .notification-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 20px;       
-    right: 3px;      
-    width: 8px;
-    height: 8px;
-    background-color: #da7b00;
-    border-radius: 50%;
-    
-} */
 
 
 .notif-name {
@@ -591,14 +575,6 @@ input[type="checkbox"]:checked::after {
 }
 
 
-/* input[type="checkbox"]:checked {
-    background-color: white;
-    border-color: black; 
-} */
-/* input[type="checkbox"]:hover {
-    border-color: var(--accent-color);
-} */
-
 .bell-wrapper {
     position: relative;
     display: inline-flex;
@@ -625,10 +601,6 @@ input[type="checkbox"]:checked::after {
     grid-column: 2;
     margin-top: -10px;
 }
-
-
-
-
 
 
 
