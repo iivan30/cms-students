@@ -2,20 +2,20 @@ const CACHE_NAME = 'cms-cache-v1';
 
 
 const FILES_TO_CACHE = [
-    '/patternSite_1.html',
-    '/patternSite_1.css',
-    '/patternSite_1.js',
-    '/manifest.json',
-    '/source/icon-192.png',
-    '/source/icon-512.png',
-    '/source/add.svg',
-    '/source/edit.svg',
-    '/source/closs.svg',
-    '/source/wbell.svg',
-    '/source/profilee.svg',
-    '/source/chevron-left.svg',
-    '/source/chevron-right.svg',
-    '/source/smile-no-mouth.svg'
+    './patternSite_1.html',
+    './patternSite_1.css',
+    './patternSite_1.js',
+    './manifest.json',
+    './source/icon-192.png',
+    './source/icon-512.png',
+    './source/add.svg',
+    './source/edit.svg',
+    './source/closs.svg',
+    './source/wbell.svg',
+    './source/profilee.svg',
+    './source/chevron-left.svg',
+    './source/chevron-right.svg',
+    './source/smile-no-mouth.svg'
 ];
 
 
