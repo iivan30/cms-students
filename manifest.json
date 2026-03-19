@@ -2,7 +2,7 @@
     "name": "Student CMS",
     "short_name": "CMS",
     "description": "Student Management System",
-    "start_url": "/patternSite_1.html",
+    "start_url": "./patternSite_1.html",
     "display": "standalone",
     "background_color": "#f0f0f0",
     "theme_color": "#656572",
