@@ -531,14 +531,11 @@ if (confirmDelBtn) {
 
 
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('[SW] Registered, scope:', reg.scope))
-            .catch(err => console.error('[SW] Registration failed:', err));
-    });
-}
- 
+ if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+            .then(() => console.log('[SW] Registered'))
+            .catch(err => console.error('[SW] Error:', err));
+    }
 
 
 
